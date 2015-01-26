@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Videosite - A webpage playing video in background with sidebar playlist using Bigvideo.js.</title>
+    <meta name="description" content="Thrillvideo - A responsive webpage playing video in background with sidebar playlist using Bigvideo.js." />
+    <meta name="author" content="Rohit Rai" />
+    <meta name="viewport" content="width=device-width">
+    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:900&text=ABCDEFGHIJKLMNOPQRSTUVWXYZ' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/bigvideo.css">
+    
+
+    <script src="js/modernizr-2.5.3.min.js"></script>
+
+    
+</head>
+<body>
+
+
+    
+
+
+
+    <div class="nav box">
+       
+        
+        <div class="mobile">
+            <!-- Checkbox to toggle the menu -->
+            <input type="checkbox" id="tm" />
+            <!-- The menu -->
+            <ul class="sidenav video-list">
+                <li><a id="vid1" href="#" class="playlist-btn"><i class="fa fa-youtube-play"></i><b>Dock</b></a></li>
+                <li><a id="vid2" href="#" class="playlist-btn"><i class="fa fa-youtube-play"></i><b>River</b></a></li>
+                <li><a id="vid3" href="#" class="playlist-btn"><i class="fa fa-youtube-play"></i><b>Ocean</b></a></li>
+                <li><a id="vid4" href="#" class="playlist-btn"><i class="fa fa-youtube-play"></i><b>Video 4</b></a></li>
+                <li><a id="vid5" href="#" class="playlist-btn"><i class="fa fa-youtube-play"></i><b>Video 5</b></a></li>
+                <li><a id="vid6" href="#" class="playlist-btn"><i class="fa fa-youtube-play"></i><b>Video 6</b></a></li>
+            </ul>
+            <!-- Content area -->
+            <section>
+                <!-- Label for #tm checkbox -->
+                <label for="tm">
+                    <img src="img/play.png" height="50%" width="50%">
+                    <hr>
+                    <h3>Play</h3>
+                </label>
+            </section>
+        </div>
+       
+        <!-- <ul class="video-list">
+            <li><a href="vids/dock.mp4" class="playlist-btn">Video #1</a></li>
+            <li><a href="vids/river.mp4" class="playlist-btn">Video #2</a></li>
+            <li><a href="vids/frontier.mp4" class="playlist-btn">Video #3</a></li>
+        </ul> -->
+    </div>
+    <div class="main">
+        <div id="overview" class="box">
+            <h1>Video<span class="dimmed"><small>Site</small></span></h1>
+            <h2>Fullscreen Background Video Website With Animated Sidebar</h2>
+            <p>This is a simple implementation of BigVideo.js playlist on a website. There is a sidebar which is animated on Page load and contains the playlist of videos. On clicking on the video links a video is played on backgroound. It contains multiformated videolist for browser fallback support. In addition to the normal functionality of BigVideo.js, there is an auto-hide script which makes the content fades out away when you stop moving the mouse (unless you are over the playlist nav).</p>
+            <p>Also using Modernizr&rsquo;s touch feature detection rules for how BigVideo behaves for touchscreen devices that likely do not allow autoplay is implemented.</p>
+        </div>
+    </div>
+
+    <!-- BigVideo Dependencies -->
+    <script src="js/jquery-1.11.2.min.js"></script>
+    <script src="js/jquery-ui.min.js"></script>
+    <script src="js/video.js"></script>
+    <script src="js/EventEmitter.min.js"></script>
+    <script src="js/eventie.js"></script>
+    <script src="js/imagesloaded.js"></script>
+
+    <!-- BigVideo -->
+    <script src="js/bigvideo.js"></script>
+
+    <!-- Demo -->
+    <script>
+
+
+        $(document).ready(function(){ 
+             $('.nav , .mobile').fadeIn(6000);
+             $('.box , .main').fadeIn(2000).animate({"top" : "2%",}, 2000);
+             
+        });
+       
+
+
+
+        $(function() {
+
+            // Use Modernizr to detect for touch devices, 
+            // then serve them alternate background image content
+            var isTouch = Modernizr.touch;
+            
+            // vars for auto hiding
+            var isShowingPlaylist = false;
+            var isHidden = false;
+            var autoHideTimer;
+            var $showContentButton = $('<div class="touchscreen-show-button box">Back</div>')
+            
+            // initialize BigVideo
+            var BV = new $.BigVideo({forceAutoplay:isTouch});
+            BV.init();
+            // show background image
+            BV.show('img/background1.jpg');
+
+            // Playlist button click starts video, enables autohiding
+            $('.playlist-btn').on('click', function(e) {
+                e.preventDefault();
+
+                switch($(this).attr('id'))
+                {
+                    case 'vid1': 
+                        BV.show([
+                            { type: "video/mp4",  src: "vids/dock.mp4" },
+                            { type: "video/webm", src: "vids/dock.webm" },
+                            { type: "video/ogg",  src: "vids/dock.ogv" }
+                        ]);
+                        autoHide(true);
+                        isShowingPlaylist = true;
+                        break;
+                    case 'vid2': 
+                        BV.show([
+                            { type: "video/mp4",  src: "vids/river.mp4" },
+                            { type: "video/webm", src: "vids/river.webm" },
+                            { type: "video/ogg",  src: "vids/river.ogv" }
+                        ]);
+                        autoHide(true);
+                        isShowingPlaylist = true;
+                        break;
+                    case 'vid3': 
+                        BV.show([
+                            { type: "video/mp4",  src: "http://video-js.zencoder.com/oceans-clip.mp4" },
+                            { type: "video/webm", src: "http://video-js.zencoder.com/oceans-clip.webm" },
+                            { type: "video/ogg",  src: "http://video-js.zencoder.com/oceans-clip.ogv" }
+                        ]);
+                        autoHide(true);
+                        isShowingPlaylist = true;
+                        break;
+
+                }
+
+                
+                
+            })
+
+            // Turn off autohiding when mouse is over the nav 
+            // (not necessary for touchscreens)
+            if (!isTouch) {
+                $('.nav')
+                    .on('mouseover', function() {
+                        if (isShowingPlaylist) autoHide(false);
+                    })
+                    .on('mouseout', function() {
+                        if (isShowingPlaylist) autoHide(true);
+                    });
+            } else {
+                // add button to show content on touchscreen
+                $('body').prepend($showContentButton);
+            }
+
+            function autoHide(enable) {
+                if (enable) {
+                    isHidden = true;
+                    $('body').on('mousemove', function(event){
+                        if (isHidden) {
+                            isHidden = false;
+                            $('.nav, .main').removeClass('transparent');
+                        }
+                        clearTimeout(autoHideTimer);
+                        autoHideTimer = setTimeout(function() {
+                            isHidden = true;
+                            $('.nav, .main').addClass('transparent');
+                        }, 500);
+                    });    
+                } else {
+                    clearTimeout(autoHideTimer);
+                    $('body').off('mousemove');
+                    $('.nav, .main').removeClass('transparent');
+                }
+            }
+        });
+    </script>
+</body>
+</html>
