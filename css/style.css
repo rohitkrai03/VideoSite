@@ -1,0 +1,277 @@
+/*Fontawesome Iconfont*/
+@import url(http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css);
+/*Montserrat, Open Sans*/
+@import url(http://fonts.googleapis.com/css?family=Montserrat|Open+Sans:400,300);
+
+
+
+* { -moz-box-sizing:border-box; -webkit-box-sizing:border-box; box-sizing:border-box; *behavior:url(boxsizing.htc); }
+html, body { 
+	margin:0;
+	padding:0;background:#000;
+	line-height:1;
+	font-family:Arial, "Helvetica Neue", Helvetica, sans-serif;
+}
+h1, h2, .nav-link, .playlist-btn {
+	font-family:'Source Sans Pro', sans-serif; font-weight:600; 
+	
+}
+h1 {font-size:48px; }
+h2 {font-size:28px; }
+h1, h2, h3, p { margin:0 0 10px; color:#fff; text-shadow: 1px 1px 1px #000;}
+p { line-height:1.4;  }
+a { color:#fff; font-style:italic; }
+blockquote { 
+	background:#fff; 
+	margin:0 0 20px;
+	padding:5px 20px; 
+}
+pre {
+	white-space:pre-wrap;       /* css-3 */
+	white-space:-moz-pre-wrap;  /* Mozilla, since 1999 */
+	white-space:-pre-wrap;      /* Opera 4-6 */
+	white-space:-o-pre-wrap;    /* Opera 7 */
+	word-wrap:break-word;       /* Internet Explorer 5.5+ */
+}
+.box { 
+	background:#444; background:rgba(0,0,0,.6);
+	display: none;
+	padding:5px;
+	border-radius:5px;
+	margin-bottom:10px;
+}
+.nav { 
+	position:fixed; 
+	display:none;
+	top:3%;left:2%;
+	z-index: 999999;
+	 
+	-webkit-transition-duration:0.6s;-moz-transition-duration:0.6s;-ms-transition-duration:0.6s;-o-transition-duration:0.6s;transition-duration:0.6s;
+}
+.credit {
+	margin:20px 0;
+}
+.download-links { margin-top:20px; }
+.download { margin-left:10px; padding:5px 10px; color:#fff; background:#111; border-radius:5px; display: inline; }
+.video-list {
+	list-style:none;
+	margin:0 0 -10px;
+	padding:0;
+	text-align:center;
+}
+.video-list li {
+	margin-bottom:10px;
+}
+
+.video-list .playlist-btn {
+	display:block;
+	width:100%;
+}
+.main {
+	position:absolute;
+	top: 60%;
+	display: none;
+	margin: 2% 2% 60% 40%;
+	
+	-webkit-transition-duration:0.6s;-moz-transition-duration:0.6s;-ms-transition-duration:0.6s;-o-transition-duration:0.6s;transition-duration:0.6s;
+}
+.nav-link {
+	display:block;
+	padding-bottom:10px;
+	text-decoration:none;
+	font-style:normal;
+}
+.toggle-btn {
+	position: absolute;
+	bottom: -50px;
+	left: 5px;
+	background:rgba(0,0,0,.8);
+	padding: 6px 12px;
+	border-radius: 10px;
+	color: #fff;
+	font-size: .8em;
+	font-family:'Source Sans Pro', sans-serif; font-weight:900; 
+	text-transform: uppercase;
+}
+.playlist { 
+	padding:0; 
+	margin:20px 20px 40px;
+}
+.playlist-btn { 
+	background:#00796B; 
+	text-decoration:none; 
+	
+	border-left: 10px solid #FF5252;
+	
+}
+
+.playlist-btn:hover{
+	
+	text-decoration:none; 
+	font-weight:bold; 
+	
+
+	-webkit-transition: .7s ease all;
+	-moz-transition: .7s ease all;
+	-o-transition: .7s ease all;
+	background:#536DFE; 
+}
+
+
+
+
+
+
+
+.dimmed {opacity:.7;}
+.footer-text {
+	padding:0 20px;
+	font-size:.9em;
+	font-style:italic;
+	opacity:.8;
+	text-shadow: 1px 1px 1px rgba(0,0,0,.8);
+}
+
+
+
+
+
+
+
+.mobile {
+	display: none;
+	float: left; position: relative;
+	box-shadow: 0 0 25px 0 rgba(0, 0, 0, 0.5);
+	overflow: hidden;
+}
+/*Hiding the checkbox*/
+#tm {display: none;}
+/*Content area*/
+.mobile section {
+	background:   #F44336;
+	width: 285px; height: 500px;
+	position: relative; transition: all 0.25s;
+}
+.mobile section label {
+	color: white; font: bold 14px Montserrat; text-align: center;
+	border: 2px solid white; border-radius: 4px;
+	display: block; padding: 10px 0;
+	width: 60%; position: absolute; left: 20%; top: 20%;
+	cursor: pointer; 
+}
+/*Nav styles*/
+.sidenav {
+	background: #009688; width: 60%;
+	position: absolute; left: 0; top: 0; bottom: 0; padding-top: 80px;
+}
+.sidenav li {list-style-type: none;}
+.sidenav a { color: white; text-decoration: none; }
+.sidenav b {
+	font: 14px/48px Montserrat; display: block;
+	opacity: 0; transform: translateX(50px); transition: all 0.4s;
+}
+.sidenav i {
+	display: block; width: 50px; float: left; 
+	font-size: 16px; line-height: 48px; text-align: center;
+}
+/*Animation controls using checkbox hack*/
+/*Animate content area to the right*/
+#tm:checked ~ section {transform: translateX(60%);}
+/*Animate links from right to left + fade in effect*/
+#tm:checked ~ .sidenav b {opacity: 1; transform: translateX(0);}
+
+/*Adding delay to link animation - in multiples of .08s*/
+/*One can use jQuery also for creating the delayed effect. But I will stick to manual CSS for this walkthrough.*/
+#tm:checked ~ .sidenav li:nth-child(1) b {transition-delay: 0.08s;}
+#tm:checked ~ .sidenav li:nth-child(2) b {transition-delay: 0.16s;}
+#tm:checked ~ .sidenav li:nth-child(3) b {transition-delay: 0.24s;}
+#tm:checked ~ .sidenav li:nth-child(4) b {transition-delay: 0.32s;}
+#tm:checked ~ .sidenav li:nth-child(5) b {transition-delay: 0.40s;}
+#tm:checked ~ .sidenav li:nth-child(6) b {transition-delay: 0.48s;}
+
+
+
+@media screen and (max-width: 980px), screen and (max-height: 530px) {
+
+	.mobile section {
+		width: 235px; height: 400px;
+		position: relative; transition: all 0.5s;
+	}
+	.sidenav {
+		padding-top: 58px;
+
+	}
+	.sidenav b {
+		font:12px/40px Montserrat; display: block;
+		opacity: 0; transform: translateX(50px); transition: all 0.4s;
+	}
+	.sidenav i {
+		display: block; width: 40px; float: left; 
+		font-size: 14px; line-height: 40px; text-align: center;
+	}
+	.mobile section label{
+		font: 12px Montserrat;
+	}
+	
+	h1 {font-size:40px; }
+	h2 {font-size:24px; }
+	
+	
+
+}
+
+@media screen and (max-width: 650px), screen and (max-height: 420px) {
+
+	.mobile section {
+		width: 185px; height: 300px;
+		position: relative; transition: all 0.5s;
+	}
+	.sidenav {
+	  	padding-top: 30px;
+
+	}
+	.sidenav b {
+		font: 11px/32px Montserrat; display: block;
+		opacity: 0; transform: translateX(50px); transition: all 0.4s;
+	}
+	.sidenav i {
+		display: block; width: 30px; float: left; 
+		font-size: 12px; line-height: 30px; text-align: center;
+	}
+
+	.mobile section label{
+		font: 10px Montserrat;
+	}
+
+	h1 {font-size:32px; }
+	h2 {font-size:20px; }
+
+
+}
+
+@media screen and (max-width:510px), screen and (max-height: 320px) {
+
+	.mobile section {
+		width: 135px; height: 200px;
+		position: relative; transition: all 0.5s;
+	}
+	.sidenav {
+	  	padding-top: 10px;
+
+	}
+	.sidenav b {
+		font: 10px/21px Montserrat; display: block;
+		opacity: 0; transform: translateX(50px); transition: all 0.4s;
+	}
+	.sidenav i {
+		display: block; width: 20px; float: left; 
+		font-size: 10px; line-height: 20px; text-align: center;
+	}
+
+	.mobile section label{
+		font: 8px Montserrat;
+	}
+	h1 {font-size:24px; }
+	h2 {font-size:16px; }
+
+}
