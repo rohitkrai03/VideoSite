@@ -12,4 +12,4 @@ On clicking on the video links a video is played on backgroound.
 It contains multiformated videolist for browser fallback support. 
 In addition to the normal functionality of BigVideo.js, there is an auto-hide script which makes the content fades out away when you stop moving the mouse (unless you are over the playlist nav).
 
-Also using Modernizr&rsquo;s touch feature detection rules for how BigVideo behaves for touchscreen devices that likely do not allow autoplay is implemented.
+Also using Modernizr's touch feature detection rules for how BigVideo behaves for touchscreen devices that likely do not allow autoplay is implemented.
